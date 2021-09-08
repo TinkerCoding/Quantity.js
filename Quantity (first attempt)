@@ -31,14 +31,7 @@ const Quantity = ({ todo }) => {
    setCount(prevCount => prevCount + 1)
  }
 
- //////////////////
-
-
-
- 
- /////////////////////
-  
-  return (
+ return (
     <>
     <button onClick={() => decrementCount(todo.todo_id)}>-</button>
     <span>{count}</span>
