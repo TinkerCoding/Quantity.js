@@ -1,0 +1,51 @@
+import React, { useState } from 'react';
+
+
+const Quantity = ({ todo }) => {
+  const [count, setCount] = useState(todo.count);
+  const updateCount= async e => {
+    e.preventDefault();
+    try {
+      const body = { count };
+      const response = await fetch(
+        `http://localhost:5000/todos/${todo.todo_id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        }
+      );
+    
+      window.location = "/";
+    } catch (err) {
+      console.error(err.message);
+      
+    }
+  }
+
+  function decrementCount() {
+    setCount(prevCount => prevCount - 1)
+  }
+
+  function incrementCount() {
+   setCount(prevCount => prevCount + 1)
+ }
+
+ //////////////////
+
+
+
+ 
+ /////////////////////
+  
+  return (
+    <>
+    <button onClick={() => decrementCount(todo.todo_id)}>-</button>
+    <span>{count}</span>
+    <button onClick={() => incrementCount(todo.todo_id)} >+</button>
+    </> 
+  )
+  }
+
+
+export default Quantity;
